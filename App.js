@@ -7,10 +7,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
   const [textInput, setTextInput] = React.useState('')
-  const [todos, setTodos] = React.useState([
-    {id:1, task:'first todo', completed:true},
-    {id:2, task:'second todo', completed:false}
-])
+  const [todos, setTodos] = React.useState([]);
+  React.useEffect(()=>{
+    getTodoFromUserDevice( )
+  }, []);
+
+  React.useEffect(()=>{
+  saveTodoToUserDevice(todos)
+},[todos])
 
 const ListItem = ({todo}) =>{
   return <View style={styles.listItems}>
@@ -34,6 +38,17 @@ const ListItem = ({todo}) =>{
       await AsyncStorage.setItem('todos',stringifyTodos);
     }catch(e){
       console.log(e)
+    }
+  };
+
+  const getTodoFromUserDevice = async () =>{
+    try{
+      const todos = await AsyncStorage.getItem('todos');
+      if(todos != null){
+        setTodos(JSON.parse(todos));
+      }
+    }catch(error){
+        console.log(error);
     }
   };
 
