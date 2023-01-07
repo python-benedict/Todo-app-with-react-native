@@ -28,7 +28,14 @@ const ListItem = ({todo}) =>{
 };
 
   const addTodo =() =>{
-    console.log(textInput)
+    
+    const newTodo ={
+      id: Math.random(),
+      task: textInput,
+      completed: false,
+    };
+    setTodos([...todos, newTodo])
+    setTextInput('')
 }
   return (
     <SafeAreaView style={styles.container}>
