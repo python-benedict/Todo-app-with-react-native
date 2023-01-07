@@ -2,6 +2,7 @@ import { Alert, FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOp
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 const COLOR = {primary: '#1f145c', while: '#fff'}
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function App() {
@@ -17,11 +18,11 @@ const ListItem = ({todo}) =>{
       <Text style={{fontWeight:'bold',textDecorationLine: todo?.completed? 'line-through':'none',           fontSize:15, color:COLOR.primary,}}>{todo?.task}</Text>
     </View>
     { !todo?.completed && (
-      <TouchableOpacity style={[styles.actionIcon]}>
+      <TouchableOpacity style={[styles.actionIcon]} onPress={()=>markTodoComplete(todo?.id)}>
       <Ionicons name='checkmark-done-outline' color={COLOR.while} />
     </TouchableOpacity>
     )}
-    <TouchableOpacity style={[styles.actionIcon1]}>
+    <TouchableOpacity style={[styles.actionIcon1]} onPress={()=> deleteTodo(todo?.id)}>
       <Ionicons name='trash' color={COLOR.while} />
     </TouchableOpacity>
   </View>
@@ -39,12 +40,35 @@ const ListItem = ({todo}) =>{
       setTodos([...todos, newTodo])
       setTextInput('')
     }   
-}
+};
+
+const markTodoComplete = todoId =>{
+  const newTodos = todos.map(item => {
+    if(item.id == todoId){
+      return {...item, completed:true}
+    }
+      return item;    
+  });
+  setTodos(newTodos);
+};
+
+const deleteTodo = todoId =>{
+  const newTodos = todos.filter(item=>item.id != todoId);
+  setTodos(newTodos)
+};
+
+const clearTodos = () =>{
+  Alert.alert('Confirm', 'Are you sure you want to clear all the todos?', [{text:'yes',onPress:()=>setTodos([])},
+{text: 'No'}
+])
+  
+};
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
           <Text style={{fontWeight:'bold', color:'red'}}>TODAY TODO</Text>
-          <Ionicons name='trash' style={styles.trashIcon} />          
+          <Ionicons name='trash' style={styles.trashIcon} onPress={clearTodos}/>          
       </View>
       <FlatList 
           showsVerticalScrollIndicator={false}
