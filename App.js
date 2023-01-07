@@ -13,14 +13,19 @@ export default function App() {
 
 const ListItem = ({todo}) =>{
   return <View style={styles.listItems}>
-    <View styles={{flex:1}}>
+    <View style={{flex:1}}>
       <Text style={{fontWeight:'bold',textDecorationLine: todo?.completed? 'line-through':'none',           fontSize:15, color:COLOR.primary,}}>{todo?.task}</Text>
     </View>
-    <TouchableOpacity style={[styles.actionIcon]}>
-      <Ionicons name='checkmark-done-outline' color={COLOR.while}/>
+    { !todo?.completed && (
+      <TouchableOpacity style={[styles.actionIcon]}>
+      <Ionicons name='checkmark-done-outline' color={COLOR.while} />
+    </TouchableOpacity>
+    )}
+    <TouchableOpacity style={[styles.actionIcon1]}>
+      <Ionicons name='trash' color={COLOR.while} />
     </TouchableOpacity>
   </View>
-}
+};
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -53,6 +58,15 @@ const styles = StyleSheet.create({
     width:25,
     height:25,
     backgroundColor: 'green',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 3,
+    marginLeft: 5, 
+  },
+  actionIcon1:{
+    width:25,
+    height:25,
+    backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 3,
@@ -115,6 +129,6 @@ const styles = StyleSheet.create({
     elevation: 12,
     borderRadius:7,
     marginVertical: 10,
-    justifyContent: 'space-between'
+    
   }
 });
