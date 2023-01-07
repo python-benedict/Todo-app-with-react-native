@@ -1,4 +1,4 @@
-import { FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 const COLOR = {primary: '#1f145c', while: '#fff'}
@@ -28,14 +28,17 @@ const ListItem = ({todo}) =>{
 };
 
   const addTodo =() =>{
-    
-    const newTodo ={
-      id: Math.random(),
-      task: textInput,
-      completed: false,
-    };
-    setTodos([...todos, newTodo])
-    setTextInput('')
+    if(textInput==""){
+        Alert.alert('Error', "Please write a todo")
+    }else{
+      const newTodo ={
+        id: Math.random(),
+        task: textInput,
+        completed: false,
+      };
+      setTodos([...todos, newTodo])
+      setTextInput('')
+    }   
 }
   return (
     <SafeAreaView style={styles.container}>
