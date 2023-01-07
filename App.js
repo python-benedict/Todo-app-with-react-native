@@ -11,6 +11,7 @@ export default function App() {
           <Text style={{fontWeight:'bold', color:'red'}}>TODAY TODO</Text>
           <Ionicons name='trash' style={styles.trashIcon} />
       </View>
+      <View style={styles.footer}></View>
     </SafeAreaView>
   );
 }
@@ -30,5 +31,10 @@ const styles = StyleSheet.create({
     fontSize:20,
     color:'red',
     fontWeight: 'bold'
+  },
+  footer:{
+    position: 'absolute',
+    bottom: 0,
+    color: 'white',
   }
 });
