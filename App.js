@@ -5,18 +5,29 @@ const COLOR = {primary: '#1f145c', while: '#fff'}
 
 
 export default function App() {
-  const [todos, setTodos] = React.useState([{id:1, task:'first', completed:true},
-  {id:2, task:'second', completed:true}
+  const [todos, setTodos] = React.useState([{id:1, task:'first todo', completed:true},
+  {id:2, task:'second todo', completed:false}
 ])
+
+const ListItem = ({todo}) =>{
+  return <View style={styles.listItems}>
+    <View>
+      <Text style={{fontWeight:'bold',textDecorationLine: todo?.completed? 'line-through':'none',           fontSize:15, color:COLOR.primary,}}>{todo?.task}</Text>
+    </View>
+  </View>
+}
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
           <Text style={{fontWeight:'bold', color:'red'}}>TODAY TODO</Text>
-          <Ionicons name='trash' style={styles.trashIcon} />
-          <FlatList 
-          data={todos}
-          />
+          <Ionicons name='trash' style={styles.trashIcon} />          
       </View>
+      <FlatList 
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{padding:20, paddingBottom:100}}
+          data={todos}
+          renderItem={({item}) => <ListItem todo={item} />}
+      />
       <View style={styles.footer}>
         <View style={styles.inputContainer}>
           <TextInput placeholder='Write Todo'/>
@@ -50,20 +61,20 @@ const styles = StyleSheet.create({
   },
   addIcon:{
     fontSize:30,
-    color:'white',
+    color:'#eeeee4',
     fontWeight: 'bold'
   },
   footer:{
     position: 'absolute',
     bottom: 0,
-    color: 'white',
+    color: '#eeeee4',
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 20,
   },
   inputContainer:{
-    backgroundColor: 'white',
+    backgroundColor: '#eeeee4',
     elevation: 40,
     flex:1,
     height:50,
@@ -82,5 +93,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,
+  }, 
+  listItems:{
+    padding:20,
+    backgroundColor: '#eeeee4',
+    flexDirection: 'row',
+    elevation: 12,
+    borderRadius:7,
+    marginVertical: 10,
   }
 });
