@@ -1,16 +1,21 @@
 import { FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
+const COLOR = {primary: '#1f145c', while: '#fff'}
 
 
 export default function App() {
-  const COLOR = {primary: '#1f145c', while: '#fff'}
+  const [todos, setTodos] = React.useState([{id:1, task:'first', completed:true},
+  {id:2, task:'second', completed:true}
+])
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
           <Text style={{fontWeight:'bold', color:'red'}}>TODAY TODO</Text>
           <Ionicons name='trash' style={styles.trashIcon} />
-          <FlatList />
+          <FlatList 
+          data={todos}
+          />
       </View>
       <View style={styles.footer}>
         <View style={styles.inputContainer}>
