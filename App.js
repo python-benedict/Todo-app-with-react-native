@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -10,6 +10,7 @@ export default function App() {
       <View style={styles.header}>
           <Text style={{fontWeight:'bold', color:'red'}}>TODAY TODO</Text>
           <Ionicons name='trash' style={styles.trashIcon} />
+          <FlatList />
       </View>
       <View style={styles.footer}>
         <View style={styles.inputContainer}>
