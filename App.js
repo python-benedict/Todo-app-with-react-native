@@ -11,7 +11,9 @@ export default function App() {
           <Text style={{fontWeight:'bold', color:'red'}}>TODAY TODO</Text>
           <Ionicons name='trash' style={styles.trashIcon} />
       </View>
-      <View style={styles.footer}></View>
+      <View style={styles.footer}>
+        <View style={styles.inputContainer}></View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -36,5 +38,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     color: 'white',
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  inputContainer:{
+    backgroundColor: 'white',
+    elevation: 40,
+    flex:1,
+    height:50,
+    marginVertical: 50,
+    marginRight: 20,
+    borderRadius: 30,
+     paddingHorizontal: 20,
   }
 });
