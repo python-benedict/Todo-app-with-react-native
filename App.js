@@ -5,15 +5,20 @@ const COLOR = {primary: '#1f145c', while: '#fff'}
 
 
 export default function App() {
-  const [todos, setTodos] = React.useState([{id:1, task:'first todo', completed:true},
-  {id:2, task:'second todo', completed:false}
+
+  const [todos, setTodos] = React.useState([
+    {id:1, task:'first todo', completed:true},
+    {id:2, task:'second todo', completed:false}
 ])
 
 const ListItem = ({todo}) =>{
   return <View style={styles.listItems}>
-    <View>
+    <View styles={{flex:1}}>
       <Text style={{fontWeight:'bold',textDecorationLine: todo?.completed? 'line-through':'none',           fontSize:15, color:COLOR.primary,}}>{todo?.task}</Text>
     </View>
+    <TouchableOpacity style={[styles.actionIcon]}>
+      <Ionicons name='checkmark-done-outline' color={COLOR.while}/>
+    </TouchableOpacity>
   </View>
 }
   return (
@@ -44,6 +49,15 @@ const ListItem = ({todo}) =>{
 }
 
 const styles = StyleSheet.create({
+  actionIcon:{
+    width:25,
+    height:25,
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 3,
+    marginLeft: 5, 
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -101,5 +115,6 @@ const styles = StyleSheet.create({
     elevation: 12,
     borderRadius:7,
     marginVertical: 10,
+    justifyContent: 'space-between'
   }
 });
