@@ -5,7 +5,7 @@ const COLOR = {primary: '#1f145c', while: '#fff'}
 
 
 export default function App() {
-
+  const [textInput, setTextInput] = React.useState('')
   const [todos, setTodos] = React.useState([
     {id:1, task:'first todo', completed:true},
     {id:2, task:'second todo', completed:false}
@@ -26,6 +26,10 @@ const ListItem = ({todo}) =>{
     </TouchableOpacity>
   </View>
 };
+
+  const addTodo =() =>{
+
+}
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
