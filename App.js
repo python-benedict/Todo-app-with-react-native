@@ -28,6 +28,15 @@ const ListItem = ({todo}) =>{
   </View>
 };
 
+  const saveTodoToUserDevice = async (todos)=>{
+    try{
+      const stringifyTodos = JSON.stringify(todos);
+      await AsyncStorage.setItem('todos',stringifyTodos);
+    }catch(e){
+      console.log(e)
+    }
+  };
+
   const addTodo =() =>{
     if(textInput==""){
         Alert.alert('Error', "Please write a todo")
