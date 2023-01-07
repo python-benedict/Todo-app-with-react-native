@@ -28,7 +28,7 @@ const ListItem = ({todo}) =>{
 };
 
   const addTodo =() =>{
-
+    console.log(textInput)
 }
   return (
     <SafeAreaView style={styles.container}>
@@ -44,9 +44,12 @@ const ListItem = ({todo}) =>{
       />
       <View style={styles.footer}>
         <View style={styles.inputContainer}>
-          <TextInput placeholder='Write Todo'/>
+          <TextInput placeholder='Write Todo'
+          value={textInput}
+          onChangeText={text => setTextInput(text)}
+          />
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={addTodo}>
           <View style={styles.iconContainer}>
             <Ionicons name='add' style={styles.addIcon}/>
           </View>
