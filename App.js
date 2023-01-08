@@ -13,13 +13,13 @@ export default function App() {
   }, []);
 
   React.useEffect(()=>{
-  saveTodoToUserDevice(todos)
-},[todos])
+    saveTodoToUserDevice(todos)
+  },[todos])
 
 const ListItem = ({todo}) =>{
   return <View style={styles.listItems}>
     <View style={{flex:1}}>
-      <Text style={{fontWeight:'bold',textDecorationLine: todo?.completed? 'line-through':'none',           fontSize:15, color:COLOR.primary,}}>{todo?.task}</Text>
+      <Text style={{fontWeight:'bold',textDecorationLine: todo?.completed? 'line-through':'none',fontSize:15, color:COLOR.primary,}}>{todo?.task}</Text>
     </View>
     { !todo?.completed && (
       <TouchableOpacity style={[styles.actionIcon]} onPress={()=>markTodoComplete(todo?.id)}>
